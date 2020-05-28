@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "koa": "^2.12.0",
+    "koa-router": "^8.0.8",
     "nodemon": "^2.0.4"
   },
   "name": "server",
@@ -12,7 +13,6 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon --watch src/ src/index.js"
   },
-  
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hotdari/node-server.git"

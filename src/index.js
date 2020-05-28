@@ -1,32 +1,23 @@
 const Koa = require('koa');
+const Router = require('koa-router');
 const app = new Koa();
 
-app.use(async (ctx, next) => {
-  console.log('레드벨벳을 소개합니다.')
-  ctx.set("Redvelvet-Leader", 'irene')
-  await next()
-  console.log('레드벨벳을 소개를 마칩니다.')
-});
+const router = new Router();
 
-app.use(async (ctx, next) => {
-  console.log('1.아이린')
-  await next()
-});
+router.get("/", (ctx) => {
+  ctx.body = '메인페이지입니다.'
+})
 
-app.use(async (ctx, next) => {
-  console.log('2.슬기')
-  await next()
-});
+router.get("/other/:group", (ctx) => {
+  const { group } = ctx.params;
+  ctx.body = `${group}의 페이지입니다.`
+})
 
-app.use(async (ctx, next) => {
-  console.log('3.웬디')
-  await next()
-});
+router.get("/member", (ctx) => {
+  const { name } = ctx.query;
+  ctx.body = `멤버 ${name}의 페이지입니다.`
+})
 
-app.use(async (ctx, next) => {
-  console.log('4.조이')
-  await next()
-  ctx.body = "레드벨벳 멤버소개"
-});
-
-app.listen(3000)
+app.use(router.routes());
+app.use(router.allowedMethods());
+app.listen(3000);
