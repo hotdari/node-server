@@ -10,5 +10,4 @@ var db = require('knex')({
   }
 });
 
-
-const ret = db.raw('select now()').then((item) => {console.log(item[0])})
+module.exports = db;
